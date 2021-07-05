@@ -25,7 +25,7 @@ if __name__ == '__main__':
             logging.warning('Incorrect pack format.')
 
         print(
-            f'steps: {tracker.steps}\n'
-            f'kilometers: {tracker.kilometers}\n'
-            f'kcal: {tracker.kcal}\n'
+            f'steps: {int(tracker.steps)}\n'
+            f'kilometers: {round(tracker.kilometers, 2)}\n'
+            f'kcal: {round(tracker.kcal, 2)}\n'
         )
