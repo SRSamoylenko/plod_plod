@@ -73,9 +73,9 @@ class Tracker:
             if pack.timestamp < self._packs[-1].timestamp:
                 raise ValidationError
 
-            self._packs.append(pack)
             self._steps += pack.steps
             self._kcal += self._calculate_kcal(
                 timedelta=pack.timestamp - self._packs[-1].timestamp,
                 pulse=pack.pulse,
             )
+            self._packs.append(pack)
