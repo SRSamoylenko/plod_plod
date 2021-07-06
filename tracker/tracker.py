@@ -5,13 +5,13 @@ from tracker.errors import ValidationError
 
 
 class Pack:
-    def __init__(self, pack: tuple):
+    def __init__(self, *args):
         self._is_valid = False
-        if self.validate_pack(pack):
-            t = time.fromisoformat(pack[0])
+        if self.validate_pack(args):
+            t = time.fromisoformat(args[0])
             self.timestamp = t.hour * 3600 + t.minute * 60 + t.second
-            self.steps = pack[1]
-            self.pulse = pack[2]
+            self.steps = args[1]
+            self.pulse = args[2]
             self._is_valid = True
 
     @staticmethod
@@ -45,7 +45,7 @@ class Tracker:
         :param mass: Human being mass in kilograms.
         """
         self._packs = [
-            Pack(('00:00:00', 0, 0)),
+            Pack('00:00:00', 0, 0),
         ]
         self._steps = 0
         self._kcal = 0
@@ -67,8 +67,8 @@ class Tracker:
     def steps(self) -> int:
         return self._steps
 
-    def add_pack(self, pack: tuple):
-        pack = Pack(pack)
+    def add_pack(self, pack):
+        pack = Pack(*pack)
         if pack.is_valid(raise_exception=True):
             if pack.timestamp < self._packs[-1].timestamp:
                 raise ValidationError

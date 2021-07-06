@@ -16,7 +16,7 @@ if __name__ == '__main__':
         try:
             pack[1] = float(pack[1])
             pack[2] = float(pack[2])
-        except ValueError:
+        except ValueError or IndexError:
             pass
 
         try:
